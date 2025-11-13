@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 #comment
+
 i=0
-
-while (( i<=59  ))  
+while ((i<=12))
 do
-	if [ $i -eq 0 ];then
-	echo "Hour: 0"
-	else
-	echo "$i"
-	fi
-	((i++))
-done
+	echo "Hour: "$i""
+	h=1
+	while ((h<=59))
+	do
+		echo "$h"
+		((h++))
 
-h=1
-while ((h<=12))
-do 
-	if [ $h -eq 1 ]; then
-		echo "Hour: 1"
-	fi
-	echo "$h"
-	((h++))
+
+
+	done
+
+	((i++))
+
+
+
+
 done
