@@ -15,5 +15,5 @@ do
 		17)
 			echo "bad luck from Italy"
 			;;
-	((i++))
+i=$(( i+1 ))
 done
