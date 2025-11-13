@@ -13,7 +13,7 @@ do
 done
 
 h=1
-while ((h<=9))
+while ((h<=12))
 do 
 	if [ $h -eq 1 ]; then
 		echo "Hour: 1"
