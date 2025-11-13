@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#comment
+while IFS=":" read -r username _ userid _ _ location _ ;do
+	echo "$username:$userid:$location"
+done < /etc/passwd
