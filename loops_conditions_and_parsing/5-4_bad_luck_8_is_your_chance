@@ -6,7 +6,7 @@ while (( i<=10 ))do
 	echo "bad luck"
 	fi
 
-	else if [ "$i" -eq 8 ]then
+	elif [ "$i" -eq 8 ]then
 	echo "good luck"
 	fi
 
