@@ -2,7 +2,7 @@
 #comment
 i=0
 
-while (( i<=60  ))  
+while (( i<=59  ))  
 do
 	if [ $i -eq 0 ];then
 	echo "Hour: $i"
@@ -13,7 +13,7 @@ do
 done
 
 h=1
-while ((h<=12))
+while ((h<=9))
 do 
 	if [ $h -eq 1 ]; then
 		echo "Hour: 1"
