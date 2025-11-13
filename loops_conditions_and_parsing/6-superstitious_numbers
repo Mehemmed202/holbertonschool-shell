@@ -15,5 +15,6 @@ do
 		17)
 			echo "bad luck from Italy"
 			;;
-i=$(( i+1 ))
+		esac
+i=$((i+1))
 done
