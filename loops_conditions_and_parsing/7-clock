@@ -9,7 +9,7 @@ do
 	else
 	echo "$i"
 	fi
-((i++))
+	((i++))
 done
 
 h=1
