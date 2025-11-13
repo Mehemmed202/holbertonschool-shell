@@ -5,11 +5,11 @@ while (( i<=10 ))
 	do
 	if [ "$i" -eq 4 ]then
 	echo "bad luck"
-	fi
+	
 
 	elif [ "$i" -eq 8 ]then
 	echo "good luck"
-	fi
+	
 
 	else
 	echo "Best School"
