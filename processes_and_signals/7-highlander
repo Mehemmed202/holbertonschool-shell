@@ -2,7 +2,7 @@
 #comment
 while ((1==1))
 do
-	trap 'echo "$I am invincible!!!"' SIGTERM
+	trap 'echo "I am invincible!!!"' SIGTERM
 	echo "To infinity and beyond"
 	sleep 2
 done
