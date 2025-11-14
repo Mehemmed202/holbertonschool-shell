@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#comment
 PIDFILE="/var/run/my_process.pid"
 SCRIPT_PATH="$(pwd)/manage_my_process"
 

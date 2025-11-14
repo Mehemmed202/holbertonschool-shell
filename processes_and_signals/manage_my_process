@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Sonsuz loop, /tmp/my_process faylına yazır
 while true
 do
