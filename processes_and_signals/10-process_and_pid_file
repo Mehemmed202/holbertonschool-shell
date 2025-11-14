@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 #comment
-PIDFILE="/var/run/myscript.pid"
+PIDFILE="/tmp/myscript.pid"  # /var/run/ əvəzinə /tmp istifadə
 
-# Skriptin PID-ni fayla yaz
+# PID faylını yaz
 echo $$ > "$PIDFILE"
 
-# SIGTERM zamanı göstəriləcək mesaj (amma eyni zamanda silib çıxmaq da tələb olunur)
-# Buna görə SIGTERM həm mesaj göstərəcək, həm də proqramı bitirəcək
+# SIGTERM zamanı
 trap 'echo "I hate the kill command"; rm -f "$PIDFILE"; exit 0' SIGTERM
 
-# SIGINT (Ctrl+C) siqnalı zamanı
+# SIGINT (Ctrl+C)
 trap 'echo "Y U no love me?!";' SIGINT
 
-# SIGQUIT (Ctrl+\) — PID faylını sil və çıx
+# SIGQUIT
 trap 'rm -f "$PIDFILE"; exit 0' SIGQUIT
 
-# Sonsuz döngü
+# Sonsuz loop
 while true
 do
     echo "To infinity and beyond"
