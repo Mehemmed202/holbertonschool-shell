@@ -5,7 +5,7 @@ echo "$$" > "$path"
 while ((1==1))
 do
 	echo "To infinity and beyond"
-	trap 'echo "I hate the kill command"'
-	trap 'echo "Y U no love me?!"'
+	trap 'echo "I hate the kill command"' SIGTREM
+	trap 'echo "Y U no love me?!"' SIGINIT
 	trap 'rm -f "$PIDFILE"; exit 0' SIGQUIT
 done
