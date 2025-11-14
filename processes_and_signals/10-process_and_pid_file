@@ -1,17 +1,44 @@
 #!/usr/bin/env bash
-#comment
+# 1. PID faylının yerini təyin edirik.
+# /var/run/ qovluğu adətən 'root' səlahiyyəti tələb edir.
+PID_FILE="/var/run/myscript.pid"
 
-PIDFILE="/var/run/myscript.pid"
-echo $$ > "$PIDFILE"
+# 5. Siqnal gəldikdə (SIGTERM və ya SIGQUIT) işə düşəcək təmizləmə funksiyası
+cleanup() {
+    echo "" # Mesajların qarışmaması üçün yeni sətir
+    echo "PID faylı silinir ($PID_FILE) və skript dayandırılır..." >&2
+    rm -f "$PID_FILE"
+    exit 0
+}
 
-trap 'echo "I hate the kill command"; rm -f "$PIDFILE"; exit 0' SIGTERM
+# 4. SIGINT (Ctrl+C) siqnalını tuturuq
+# Bu siqnal gələndə sadəcə mesaj göstərilir, skript dayandırılmır.
+trap 'echo -e "\nY U no love me?!"' SIGINT
 
-trap 'echo "Y U no love me?!";' SIGINT
+# 3. & 5. SIGTERM (pkill) siqnalını tuturuq
+# Bu siqnal gələndə həm mesaj göstərilir, həm də 'cleanup' funksiyası çağırılır.
+trap 'echo -e "\nI hate the kill command"; cleanup' SIGTERM
 
-trap 'rm -f "$PIDFILE"; exit 0' SIGQUIT
+# 5. SIGQUIT (Ctrl+\) siqnalını tuturuq
+# Bu siqnal gələndə birbaşa 'cleanup' funksiyası çağırılır.
+trap 'cleanup' SIGQUIT
 
+# --- Əsas Skript Məntiqi ---
+
+# /var/run qovluğuna yazmaq üçün 'root' (sudo) yoxlanışı
+if [ "$(id -u)" -ne 0 ]; then
+   echo "Zəhmət olmasa, bu skripti 'sudo' ilə işə salın." >&2
+   exit 1
+fi
+
+# 1. Öz PID-imizi ($$) fayla yazırıq
+echo $$ > "$PID_FILE"
+echo "Skript işə düşdü. PID: $$"
+echo "PID faylı yaradıldı: $PID_FILE"
+
+# 2. Sonsuz döngü
 while true
 do
     echo "To infinity and beyond"
-    sleep 2
+    sleep 1 # CPU-nu 100% yükləməmək üçün 1 saniyə gözləyirik
 done
