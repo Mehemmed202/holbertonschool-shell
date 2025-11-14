@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+PIDFILE="/var/run/my_process.pid"
+SCRIPT_PATH="$(pwd)/manage_my_process"
+
+case "$1" in
+    start)
+        # manage_my_process-i background-da işə sal və PID-i yaz
+        "$SCRIPT_PATH" &
+        echo $! > "$PIDFILE"
+        echo "manage_my_process started"
+        ;;
+    stop)
+        if [ -f "$PIDFILE" ]; then
+            kill "$(cat $PIDFILE)"
+            rm -f "$PIDFILE"
+            echo "manage_my_process stopped"
+        else
+            echo "manage_my_process is not running"
+        fi
+        ;;
+    restart)
+        if [ -f "$PIDFILE" ]; then
+            kill "$(cat $PIDFILE)"
+            rm -f "$PIDFILE"
+        fi
+        "$SCRIPT_PATH" &
+        echo $! > "$PIDFILE"
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        ;;
+esac
+

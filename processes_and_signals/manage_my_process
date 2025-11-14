@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Sonsuz loop, /tmp/my_process faylına yazır
+while true
+do
+    echo "I am alive!" >> /tmp/my_process
+    sleep 2
+done
+
